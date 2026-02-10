@@ -4,11 +4,17 @@ import { NPI } from "./npi";
 export const Form = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
+  const [address, setAddress] = useState("");
+  const [state, setState] = useState("");
+  const [zip, setZip] = useState("");
   const [phone, setPhone] = useState("");
   const [npiNumber, setNPINumber] = useState("");
   const map = {
     setFName: setFirstName,
     setLName: setLastName,
+    setAddress: setAddress,
+    setState: setState,
+    setZip: setZip,
     setPhone: setPhone,
     setNPI: setNPINumber,
   };
@@ -17,6 +23,15 @@ export const Form = () => {
   };
   const lastNameChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setLastName(e.target.value);
+  };
+  const addressChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setAddress(e.target.value);
+  };
+  const stateChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setState(e.target.value);
+  };
+  const zipChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setZip(e.target.value);
   };
   return (
     <form>
@@ -33,7 +48,27 @@ export const Form = () => {
           value={lastName}
           placeholder="Last Name"
         />
+        <input
+          type="text"
+          onChange={addressChangeHandler}
+          value={address}
+          placeholder="Street Address"
+        />
+
+        <input
+          type="text"
+          onChange={stateChangeHandler}
+          value={state}
+          placeholder="State"
+        />
+        <input
+          type="text"
+          onChange={zipChangeHandler}
+          value={zip}
+          placeholder="Zip Code"
+        />
       </fieldset>
+      1003101296
       <NPI {...map}>Test</NPI>
     </form>
   );

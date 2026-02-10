@@ -5,10 +5,14 @@ interface NPIProps {
   setLName?: React.Dispatch<React.SetStateAction<string>>;
   setPhone?: React.Dispatch<React.SetStateAction<string>>;
   setNPI?: React.Dispatch<React.SetStateAction<string>>;
+  setAddress?: React.Dispatch<React.SetStateAction<string>>;
+  setState?: React.Dispatch<React.SetStateAction<string>>;
+  setZip?: React.Dispatch<React.SetStateAction<string>>;
 }
 export const NPI = (props: NPIProps) => {
-  const [npi, setNpi] = useState("test");
-  const { setFName, setLName, setPhone, setNPI } = props;
+  const [npi, setNpi] = useState("");
+  const { setFName, setLName, setAddress, setState, setZip, setPhone, setNPI } =
+    props;
   const cachedData: string[] = [];
 
   const fnWrapper = (
@@ -26,24 +30,25 @@ export const NPI = (props: NPIProps) => {
   useEffect(() => {
     const valid = isValidNPI(npi);
 
-    /*
     if (valid) {
-      fnWrapper(setFName, "John");
-      fnWrapper(setLName, "Joe");
-      fnWrapper(setNPI, npi);
-      fnWrapper(setPhone, "3213214321");
-      fetch(
-        `https://npiregistry.cms.hhs.gov/api/?number=${1003101296}&version=2.1`,
-      )
+      fetch(`npi/`)
         .then((response) => response.json())
         .then((data) => {
+          const address = data.addresses[0];
+          const basic = data.basic;
+          fnWrapper(setFName, basic.authorized_official_first_name);
+          fnWrapper(setLName, basic.authorized_official_last_name);
+          fnWrapper(setPhone, address.telephone_number);
+          fnWrapper(setAddress, address.address_1);
+          fnWrapper(setState, address.state);
+          fnWrapper(setZip, address.postal_code);
+
           console.log("Fetched data:", data);
         })
         .catch((error) => {
           console.error("Error fetching data:", error);
         });
     }
-    */
   }),
     [npi];
 
