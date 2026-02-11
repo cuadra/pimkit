@@ -1,7 +1,13 @@
 "use client";
 import React, { useState } from "react";
 import { NPI } from "./npi";
-import { FieldsetStyle, LabelStyle, InputStyle } from "./styles.css";
+import {
+  ButtonStyle,
+  FieldsetStyle,
+  LabelStyle,
+  InputStyle,
+  RowStyle,
+} from "./styles.css";
 export const Form = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -46,26 +52,28 @@ export const Form = () => {
   return (
     <form>
       <fieldset className={FieldsetStyle}>
-        <legend>Patient</legend>
-        <label className={LabelStyle} htmlFor="fName">
-          First Name
-          <input
-            className={InputStyle}
-            type="text"
-            placeholder="First Name"
-            name="fName"
-          />
-        </label>
+        <legend>Information</legend>
+        <div className={RowStyle}>
+          <label className={LabelStyle} htmlFor="fName">
+            First Name
+            <input
+              className={InputStyle}
+              type="text"
+              placeholder="First Name"
+              name="fName"
+            />
+          </label>
 
-        <label className={LabelStyle} htmlFor="lName">
-          Last Name
-          <input
-            className={InputStyle}
-            type="text"
-            placeholder="Last Name"
-            name="lName"
-          />
-        </label>
+          <label className={LabelStyle} htmlFor="lName">
+            Last Name
+            <input
+              className={InputStyle}
+              type="text"
+              placeholder="Last Name"
+              name="lName"
+            />
+          </label>
+        </div>
       </fieldset>
       <fieldset className={FieldsetStyle}>
         <legend>NPI</legend>
@@ -91,105 +99,117 @@ export const Form = () => {
               name="npi"
             />
           </NPI>
+          Dont have one? Try 1003101296
         </label>
       </fieldset>
       <fieldset className={FieldsetStyle}>
         <legend>Provider Information</legend>
-        <label className={LabelStyle} htmlFor="org">
-          Organization Name
-          <input
-            className={InputStyle}
-            type="text"
-            onChange={orgChangeHandler}
-            value={org}
-            placeholder="Organization Name"
-          />
-        </label>
-        <label className={LabelStyle} htmlFor="firstName">
-          First Name
-          <input
-            className={InputStyle}
-            type="text"
-            onChange={firstNameChangeHandler}
-            value={firstName}
-            placeholder="First Name"
-          />
-        </label>
-        <label className={LabelStyle} htmlFor="lastName">
-          Last Name
-          <input
-            className={InputStyle}
-            type="text"
-            onChange={lastNameChangeHandler}
-            value={lastName}
-            placeholder="Last Name"
-          />
-        </label>
-        <label className={LabelStyle} htmlFor="address">
-          Street Address
-          <input
-            className={InputStyle}
-            type="text"
-            onChange={addressChangeHandler}
-            value={address}
-            placeholder="Street Address"
-          />
-        </label>
-        <label className={LabelStyle} htmlFor="city">
-          City
-          <input
-            className={InputStyle}
-            type="text"
-            onChange={cityChangeHandler}
-            value={city}
-            placeholder="City"
-          />
-        </label>
-        <label className={LabelStyle} htmlFor="state">
-          State
-          <input
-            className={InputStyle}
-            type="text"
-            onChange={stateChangeHandler}
-            value={state}
-            placeholder="State"
-          />
-        </label>
-        <label className={LabelStyle} htmlFor="zip">
-          Zip Code
-          <input
-            className={InputStyle}
-            type="text"
-            onChange={zipChangeHandler}
-            value={zip}
-            placeholder="Zip Code"
-          />
-        </label>
-        <label className={LabelStyle} htmlFor="country">
-          Country
-          <input
-            className={InputStyle}
-            type="text"
-            onChange={countryChangeHandler}
-            value={country}
-            placeholder="Country"
-          />
-        </label>
-        <label className={LabelStyle} htmlFor="countryName">
-          Country Name
-          <input
-            className={InputStyle}
-            type="text"
-            onChange={countryNameChangeHandler}
-            value={countryName}
-            placeholder="Country Name"
-          />
-        </label>
+        <div className={RowStyle}>
+          <label className={LabelStyle} htmlFor="org">
+            Organization Name
+            <input
+              className={InputStyle}
+              type="text"
+              onChange={orgChangeHandler}
+              value={org}
+              placeholder="Organization Name"
+            />
+          </label>
+        </div>
+        <div className={RowStyle}>
+          <label className={LabelStyle} htmlFor="firstName">
+            First Name
+            <input
+              className={InputStyle}
+              type="text"
+              onChange={firstNameChangeHandler}
+              value={firstName}
+              placeholder="First Name"
+            />
+          </label>
+          <label className={LabelStyle} htmlFor="lastName">
+            Last Name
+            <input
+              className={InputStyle}
+              type="text"
+              onChange={lastNameChangeHandler}
+              value={lastName}
+              placeholder="Last Name"
+            />
+          </label>
+        </div>
+        <div className={RowStyle}>
+          <label className={LabelStyle} htmlFor="address">
+            Street Address
+            <input
+              className={InputStyle}
+              type="text"
+              onChange={addressChangeHandler}
+              value={address}
+              placeholder="Street Address"
+            />
+          </label>
+        </div>
+        <div className={RowStyle}>
+          <label className={LabelStyle} htmlFor="city">
+            City
+            <input
+              className={InputStyle}
+              type="text"
+              onChange={cityChangeHandler}
+              value={city}
+              placeholder="City"
+            />
+          </label>
+          <label className={LabelStyle} htmlFor="state">
+            State
+            <input
+              className={InputStyle}
+              type="text"
+              onChange={stateChangeHandler}
+              value={state}
+              placeholder="State"
+            />
+          </label>
+        </div>
+        <div className={RowStyle}>
+          <label className={LabelStyle} htmlFor="zip">
+            Zip Code
+            <input
+              className={InputStyle}
+              type="text"
+              onChange={zipChangeHandler}
+              value={zip}
+              placeholder="Zip Code"
+            />
+          </label>
+        </div>
+        <div className={RowStyle}>
+          <label className={LabelStyle} htmlFor="country">
+            Country
+            <input
+              className={InputStyle}
+              type="text"
+              onChange={countryChangeHandler}
+              value={country}
+              placeholder="Country"
+            />
+          </label>
+          <label className={LabelStyle} htmlFor="countryName">
+            Country Name
+            <input
+              className={InputStyle}
+              type="text"
+              onChange={countryNameChangeHandler}
+              value={countryName}
+              placeholder="Country Name"
+            />
+          </label>
+        </div>
       </fieldset>
       <fieldset className={FieldsetStyle}>
-        <button>Submit</button>
+        <button className={ButtonStyle}>Submit</button>
       </fieldset>
-      1003101296
     </form>
   );
 };
