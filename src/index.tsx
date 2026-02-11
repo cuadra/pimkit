@@ -1,7 +1,8 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
-import { isValidNPI } from "./utils/luhn";
+import { isValidNPI } from "./luhn";
 interface NPIProps {
-  type: string;
+  type?: string;
+  api: string;
   setFName?: React.Dispatch<React.SetStateAction<string>>;
   setLName?: React.Dispatch<React.SetStateAction<string>>;
   setPhone?: React.Dispatch<React.SetStateAction<string>>;
@@ -14,10 +15,12 @@ interface NPIProps {
   setZip?: React.Dispatch<React.SetStateAction<string>>;
   setOrg?: React.Dispatch<React.SetStateAction<string>>;
   children: React.ReactElement<React.InputHTMLAttributes<HTMLInputElement>>;
+  region?: string;
 }
-export const NPI = (props: NPIProps) => {
+export const Pimkit = (props: NPIProps) => {
   const [npi, setNpi] = useState("");
   const {
+    region,
     type,
     children,
     setFName,
@@ -30,6 +33,7 @@ export const NPI = (props: NPIProps) => {
     setCountryName,
     setPhone,
     setOrg,
+    api,
   } = props;
   const cachedData: string[] = [];
 
@@ -49,11 +53,10 @@ export const NPI = (props: NPIProps) => {
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     const valid = isValidNPI(npi);
-    console.log(`NPI: ${npi}, Valid: ${valid}, Cache: ${npiCache}`);
     if (valid && npi !== npiCache) {
       setNpiCache(npi);
       setLoading(true);
-      fetch(`npi/`)
+      fetch(api)
         .then((response) => response.json())
         .then((data) => {
           const address = data.addresses[0];
@@ -72,6 +75,7 @@ export const NPI = (props: NPIProps) => {
           console.log("Fetched data:", data);
         })
         .catch((error) => {
+          setLoading(false);
           console.error("Error fetching data:", error);
         });
     }

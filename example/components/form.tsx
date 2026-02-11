@@ -1,13 +1,13 @@
 "use client";
 import React, { useState } from "react";
-import { NPI } from "./npi";
+import { Pimkit } from "pimkit";
 import {
   ButtonStyle,
   FieldsetStyle,
   LabelStyle,
   InputStyle,
   RowStyle,
-} from "./styles.css";
+} from "../styles/styles.css";
 export const Form = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -78,8 +78,9 @@ export const Form = () => {
       <fieldset className={FieldsetStyle}>
         <legend>NPI</legend>
         <label className={LabelStyle} htmlFor="npi">
-          <NPI
-            type="MAILING"
+          <Pimkit
+            api="./npi/"
+            region="US"
             setFName={setFirstName}
             setLName={setLastName}
             setAddress={setAddress}
@@ -98,7 +99,7 @@ export const Form = () => {
               placeholder="Enter NPI Number"
               name="npi"
             />
-          </NPI>
+          </Pimkit>
           Dont have one? Try 1003101296
         </label>
       </fieldset>
