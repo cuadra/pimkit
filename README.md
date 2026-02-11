@@ -1,9 +1,8 @@
-# NPI Form Kit
-
-> WIP
+# Provider Information Mapper (PIM)
 
 ## About
-A reusable React component that performs an NPI (National Provider Identifier) lookup and automatically maps the returned provider data to your application state, enabling seamless autofill of related form fields such as name, address, phone number, and organization details.
+
+A reusable React component that performs an NPI (National Provider Identifier) lookup and automatically maps the returned provider data to your application states, enabling seamless autofill of related form fields such as name, address, phone number, and organization details.
 
 The component validates and resolves an NPI, retrieves provider information, and updates supplied state setters so forms can populate instantly without manual data entry. Designed to be lightweight and flexible, it allows developers to connect only the fields they need, making it easy to integrate into existing form workflows or larger data-entry systems.
 
